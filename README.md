@@ -201,9 +201,12 @@ Open `http://localhost:5173` in your browser.
 
 ### Backend: Render
 1. Connect repository to [Render](https://render.com/).
-2. Set Build Command: `npm install`
-3. Set Start Command: `node server.js`
-4. Environment variables: Add `MONGO_URI`, `JWT_SECRET`, `NODE_ENV=production`.
+2. Create a **Web Service** and set its **Root Directory** to `backend`.
+3. Set Build Command: `npm ci`
+4. Set Start Command: `npm start`
+5. Environment variables: Add `MONGO_URI`, `JWT_SECRET`, `NODE_ENV=production`.
+6. In MongoDB Atlas, allow Render to reach the cluster (for initial testing, add `0.0.0.0/0` to Network Access; use a stricter rule when you have fixed egress IPs).
+7. Set Render's health-check path to `/api/health`. Opening the service root (`/`) returns an API status message; application data is under `/api`, such as `/api/posts`.
 
 ### Frontend: Vercel / Netlify
 1. Import project into [Vercel](https://vercel.com/).
